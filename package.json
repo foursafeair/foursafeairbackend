@@ -1,0 +1,38 @@
+{
+  "name": "4safeair",
+  "version": "1.0.0",
+  "description": "4safeair backend ",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "stefanh",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "braintree": "^3.7.0",
+    "concurrently": "^6.2.0",
+    "config": "^3.3.6",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-jwt": "^6.0.0",
+    "express-validator": "^5.3.1",
+    "formidable": "^1.2.2",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "mongoose": "^5.13.3",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "nodemon": "^2.0.12",
+    "stripe": "^8.163.0",
+    "uuid": "^8.3.2",
+    "uuidv1": "^1.6.14",
+    "validator": "^13.6.0"
+  }
+}
