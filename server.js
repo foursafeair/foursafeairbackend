@@ -1,11 +1,13 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const path = require("path");
+const serveStatic = require("serve-static");
 const expressValidator = require("express-validator");
-require("dotenv").config();
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
 const categoryRoutes = require("./routes/category");
@@ -32,7 +34,8 @@ app.use(bodyParser.json());
 app.use(expressValidator());
 app.use(cors());
 app.use(express.json()); // Recognize Request Objects as JSON objects
-app.use(express.static("build"));
+// app.use(express.static("build"));
+app.use(serveStatic(__dirname + "/build"));
 
 // routes middleware
 app.use("/api", authRoutes);

@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const path = require("path");
 
 const {
   create,
@@ -12,8 +13,8 @@ const {
   listCategories,
   listBySearch,
   photo,
-  listSearch
-} = require("../controllers/product");
+  listSearch,
+} = require(path.join(__dirname, "../controllers/product"));
 const { requireSigning, isAuth, isAdmin } = require("../controllers/auth");
 const { userById } = require("../controllers/user");
 
