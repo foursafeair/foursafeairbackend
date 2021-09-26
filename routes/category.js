@@ -1,9 +1,16 @@
 const express = require("express");
 const router = express.Router();
+const path = require("path");
 
-const { create, categoryById, read, remove, update, list} = require("../controllers/category");
-const { requireSigning, isAuth, isAdmin } = require("../controllers/auth");
-const { userById } = require("../controllers/user");
+const { create, categoryById, read, remove, update, list } = require(path.join(
+  __dirname,
+  "../controllers/category"
+));
+const { requireSigning, isAuth, isAdmin } = require(path.join(
+  __dirname,
+  "../controllers/auth"
+));
+const { userById } = require(path.join(__dirname, "../controllers/user"));
 
 router.get("/category/:categoryId", read);
 router.post(

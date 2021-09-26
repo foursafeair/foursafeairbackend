@@ -15,8 +15,11 @@ const {
   photo,
   listSearch,
 } = require(path.join(__dirname, "../controllers/product"));
-const { requireSigning, isAuth, isAdmin } = require("../controllers/auth");
-const { userById } = require("../controllers/user");
+const { requireSigning, isAuth, isAdmin } = require(path.join(
+  __dirname,
+  "../controllers/auth"
+));
+const { userById } = require(path.join(__dirname, "../controllers/user"));
 
 router.get("/product/:productId", read);
 router.post("/product/create/:userId", requireSigning, isAuth, isAdmin, create);

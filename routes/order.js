@@ -1,8 +1,15 @@
 const express = require("express");
 const router = express.Router();
+const path = require("path");
 
-const { requireSigning, isAuth, isAdmin } = require("../controllers/auth");
-const { userById, addOrderToUserHistory } = require("../controllers/user");
+const { requireSigning, isAuth, isAdmin } = require(path.join(
+  __dirname,
+  "../controllers/auth"
+));
+const { userById, addOrderToUserHistory } = require(path.join(
+  __dirname,
+  "../controllers/user"
+));
 const {
   create,
   listOrders,

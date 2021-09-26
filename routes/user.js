@@ -1,14 +1,16 @@
 const express = require("express");
 const router = express.Router();
+const path = require("path");
 
-const { requireSigning, isAuth, isAdmin } = require("../controllers/auth");
+const { requireSigning, isAuth, isAdmin } = require(path.join(
+  __dirname,
+  "../controllers/auth"
+));
 
-const {
-  userById,
-  read,
-  update,
-  purchaseHistory,
-} = require("../controllers/user");
+const { userById, read, update, purchaseHistory } = require(path.join(
+  __dirname,
+  "../controllers/user"
+));
 
 router.get("/secret", requireSigning, (req, res) => {
   res.json({
