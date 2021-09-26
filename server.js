@@ -31,23 +31,18 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(expressValidator());
 app.use(cors());
+app.use(express.json()); // Recognize Request Objects as JSON objects
+app.use(express.static("build"));
 
 // routes middleware
 app.use("/api", authRoutes);
 app.use("/api", userRoutes);
 app.use("/api", categoryRoutes);
 app.use("/api", productRoutes);
-app.use("/api", braintreeRoutes);
+// app.use("/api", braintreeRoutes);
 app.use("/api", orderRoutes);
 
 const port = process.env.PORT || 4000;
-
-app.use(express.static(path.join(__dirname, "build")));
-
-app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
-
 
 app.listen(port, () => {
   console.log(`Server is running on ${port}`);
