@@ -33,8 +33,11 @@ app.use(bodyParser.json());
 app.use(expressValidator());
 app.use(cors());
 app.use(express.json()); // Recognize Request Objects as JSON objects
-// app.use(express.static("build"));
-app.use(serveStatic(__dirname + "/build"));
+app.use(express.static("build"));
+// app.get(serveStatic(__dirname + "/build"));
+app.get("*", (req, res) =>
+  res.sendFile(path.resolve(__dirname, "Backend", "build", "index.html"))
+);
 
 // routes middleware
 app.use("/api", authRoutes);
