@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
@@ -16,7 +17,6 @@ const orderRoutes = require("./routes/order");
 
 // app
 const app = express();
-require("dotenv").config();
 
 //db
 mongoose
