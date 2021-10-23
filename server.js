@@ -22,7 +22,6 @@ const app = express();
 mongoose
   .connect(process.env.DATABASE, {
     useNewUrlParser: true,
-    useCreateIndex: true,
     useUnifiedTopology: true,
   })
   .then(() => console.log("DB connected"));
@@ -35,7 +34,7 @@ app.use(expressValidator());
 app.use(cors());
 app.use(express.json()); // Recognize Request Objects as JSON objects
 // app.use(express.static("build"));
-app.use(serveStatic(__dirname + "/build1"));
+app.use(serveStatic(__dirname + "/build"));
 
 // routes middleware
 app.use("/api", authRoutes);
