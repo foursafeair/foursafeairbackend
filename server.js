@@ -29,15 +29,17 @@ mongoose
 //middleware
 app.use(morgan("dev"));
 app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(expressValidator());
 app.use(cors());
 app.use(express.json()); // Recognize Request Objects as JSON objects
-app.use(express.static("build"));
-// app.get(serveStatic(__dirname + "/build"));
-app.get("*", (req, res) =>
-  res.sendFile(path.resolve(__dirname, "Backend", "build", "index.html"))
-);
+// Step 1:
+app.use(express.static(path.resolve(__dirname, "client/build")));
+// Step 2:
+app.get("*", function (request, response) {
+  response.sendFile(path.resolve(__dirname, "client/build", "index.html"));
+});
 
 // routes middleware
 app.use("/api", authRoutes);
