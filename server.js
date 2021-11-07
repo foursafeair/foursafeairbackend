@@ -1,18 +1,20 @@
-require("dotenv").config();
+
 const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-const path = require("path");
-const serveStatic = require("serve-static");
+require("dotenv").config();
+// const path = require("path");
+// const serveStatic = require("serve-static");
+// routes
 const expressValidator = require("express-validator");
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
 const categoryRoutes = require("./routes/category");
 const productRoutes = require("./routes/product");
-const braintreeRoutes = require("./routes/braintree");
+// const braintreeRoutes = require("./routes/braintree");
 const orderRoutes = require("./routes/order");
 
 // app
@@ -27,19 +29,16 @@ mongoose
   .then(() => console.log("DB connected"));
 
 //middleware
-app.use(morgan("dev"));
-app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(morgan('dev'));
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(expressValidator());
-app.use(cors());
-app.use(express.json()); // Recognize Request Objects as JSON objects
-// Step 1:
-app.use(express.static(path.resolve(__dirname, "client/build")));
-// Step 2:
-app.get("*", function (request, response) {
-  response.sendFile(path.resolve(__dirname, "client/build", "index.html"));
-});
+app.use(cors()); // Recognize Request Objects as JSON objects
+// app.use(express.static(path.resolve(__dirname, "client/build")));
+
+// app.get("*", function (request, response) {
+//   response.sendFile(path.resolve(__dirname, "client/build", "index.html"));
+// });
 
 // routes middleware
 app.use("/api", authRoutes);
@@ -49,7 +48,7 @@ app.use("/api", productRoutes);
 // app.use("/api", braintreeRoutes);
 app.use("/api", orderRoutes);
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 8000;
 
 app.listen(port, () => {
   console.log(`Server is running on ${port}`);
